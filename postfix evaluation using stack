@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main{
+public static int evaluate(char[] exp){
+Stack<Integer> stck=new Stack<>();
+for(int i=0;i<exp.length;i++){
+char ch=exp[i];
+if(ch>='0' && ch<='9'){
+stck.push(ch-'0');
+}
+else{
+int op1=stck.pop();
+int op2=stck.pop();
+switch(ch){
+case '+':
+stck.push(op2+op1);
+break;
+case '-':
+stck.push(op2-op1);
+break;
+case '*':
+stck.push(op2*op1);
+break;
+case '/':
+stck.push(op2/op1);
+break;
+}
+}
+}
+return stck.peek();
+}
+public static void main(String[] args){
+Scanner s=new Scanner(System.in);
+String str=s.nextLine();
+System.out.println(evaluate(str.toCharArray()));
+}
+}
